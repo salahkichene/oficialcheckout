@@ -27,8 +27,8 @@ export const OrderSummary = () => {
   ]);
 
   return (
-    <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px]">
-      <div className="w-[444px] max-w-[444px]">
+    <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px] border-l border-[rgba(222,222,222,1)]">
+      <div className="w-[444px] max-w-[444px] -mt-[84px]">
         <div className="w-full text-sm font-normal">
           {products.map((product, index) => (
             <div
