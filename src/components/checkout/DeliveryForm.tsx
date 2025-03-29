@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import type { ShippingMethod } from "./types";
+import { Input } from "@/components/ui/input";
 
 export const DeliveryForm = () => {
   const [shippingMethods] = useState<ShippingMethod[]>([
@@ -35,52 +37,46 @@ export const DeliveryForm = () => {
 
         <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
           <div className="min-w-[181px] flex-1 shrink basis-[0%]">
-            <input
-              type="text"
-              placeholder="First name (optional)"
+            <Input
+              label="First name (optional)"
               defaultValue="Jordan"
-              className="bg-white border w-full rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+              className="bg-white border w-full rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
             />
           </div>
           <div className="min-w-[181px] flex-1 shrink basis-[0%]">
-            <input
-              type="text"
-              placeholder="Last name"
+            <Input
+              label="Last name"
               defaultValue="Chen"
-              className="bg-white border w-full rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+              className="bg-white border w-full rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
             />
           </div>
         </div>
 
-        <input
-          type="text"
-          placeholder="Address"
+        <Input
+          label="Address"
           defaultValue="151 O'Connor Street"
-          className="w-full mt-3.5 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+          className="w-full mt-3.5 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
         />
 
-        <input
-          type="text"
-          placeholder="Apartment, suite, etc. (optional)"
+        <Input
+          label="Apartment, suite, etc. (optional)"
           defaultValue="Unit 8"
-          className="w-full mt-3.5 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+          className="w-full mt-3.5 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
         />
 
         <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
-          <input
-            type="text"
-            placeholder="City"
+          <Input
+            label="City"
             defaultValue="Ottawa"
-            className="min-w-40 flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+            className="min-w-40 flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
           />
           <select className="min-w-40 flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3">
             <option value="ON">Ontario</option>
           </select>
-          <input
-            type="text"
-            placeholder="Postal code"
+          <Input
+            label="Postal code"
             defaultValue="K2P 2L8"
-            className="min-w-40 flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+            className="min-w-40 flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
           />
         </div>
       </div>

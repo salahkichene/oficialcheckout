@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import type { PaymentMethod } from "./types";
+import { Input } from "@/components/ui/input";
 
 export const PaymentForm = () => {
   const [paymentMethods] = useState<PaymentMethod[]>([
@@ -68,41 +70,35 @@ export const PaymentForm = () => {
         ))}
 
         {/* Card Details Form */}
-        <div className="bg-neutral-100 p-3.5">
-          <div className="space-y-3.5">
-            <input
-              type="text"
-              placeholder="Card number"
-              defaultValue="4564 1234 1234 1234"
-              className="w-full bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+        <div className="bg-neutral-100 p-3.5 space-y-3.5">
+          <Input 
+            label="Card number" 
+            defaultValue="4564 1234 1234 1234" 
+            className="w-full bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+          />
+          <div className="flex gap-3.5">
+            <Input
+              label="Expiration date (MM/YY)"
+              defaultValue="12/24"
+              className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
             />
-            <div className="flex gap-3.5">
-              <input
-                type="text"
-                placeholder="Expiration date (MM/YY)"
-                defaultValue="12/24"
-                className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
-              />
-              <input
-                type="text"
-                placeholder="Security code"
-                defaultValue="123"
-                className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
-              />
-            </div>
-            <input
-              type="text"
-              placeholder="Name on card"
-              defaultValue="Jordan Chen"
-              className="w-full bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
+            <Input
+              label="Security code"
+              defaultValue="123"
+              className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
             />
-            <label className="flex items-center gap-2">
-              <input type="checkbox" defaultChecked className="w-4 h-4" />
-              <span className="text-sm">
-                Use shipping address as billing address
-              </span>
-            </label>
           </div>
+          <Input
+            label="Name on card"
+            defaultValue="Jordan Chen"
+            className="w-full bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+          />
+          <label className="flex items-center gap-2">
+            <input type="checkbox" defaultChecked className="w-4 h-4" />
+            <span className="text-sm">
+              Use shipping address as billing address
+            </span>
+          </label>
         </div>
       </div>
 

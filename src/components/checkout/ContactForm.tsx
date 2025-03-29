@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 export const ContactForm = () => {
   const [email, setEmail] = useState("jordan.chen@domain.com");
@@ -10,19 +12,13 @@ export const ContactForm = () => {
         Contact
       </h2>
       <div className="w-full mt-3.5">
-        <div className="bg-white border flex w-full rounded-[5px] border-[rgba(222,222,222,1)] border-solid">
-          <div className="min-w-60 min-h-[52px] w-full overflow-hidden flex-1 shrink basis-[0%] pt-[11px] px-[11px]">
-            <label className="z-10 w-full text-xs text-[#707070]">
-              Email address or phone number
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 shrink basis-[0%] w-full gap-[11px] text-sm text-black h-full bg-transparent"
-            />
-          </div>
-        </div>
+        <Input
+          type="email"
+          label="Email address or phone number"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="min-h-[52px]"
+        />
       </div>
       <div className="flex w-full gap-[11px] text-sm text-black tracking-[0.02px] flex-wrap mt-3.5">
         <input

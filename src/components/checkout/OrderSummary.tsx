@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import type { Product } from "./types";
+import { Input } from "@/components/ui/input";
 
 export const OrderSummary = () => {
   const [products] = useState<Product[]>([
@@ -54,12 +55,13 @@ export const OrderSummary = () => {
 
         <div className="w-full text-sm mt-[21px]">
           <div className="flex gap-3.5">
-            <input
-              type="text"
-              placeholder="Discount code"
-              className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3"
-            />
-            <button className="bg-[rgba(237,237,237,1)] text-[#707070] font-semibold px-6 rounded-[5px] border border-[rgba(214,214,214,1)]">
+            <div className="flex-1">
+              <Input
+                label="Discount code"
+                className="bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+              />
+            </div>
+            <button className="bg-[rgba(237,237,237,1)] text-[#707070] font-semibold px-6 rounded-[5px] border border-[rgba(214,214,214,1)] h-10">
               Apply
             </button>
           </div>
