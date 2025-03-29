@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import type { Product } from "./types";
 
@@ -27,7 +28,7 @@ export const OrderSummary = () => {
   ]);
 
   return (
-    <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px]">
+    <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px] pt-[17px]">
       <div className="w-[444px] max-w-[444px]">
         <div className="w-full text-sm font-normal">
           {products.map((product, index) => (
