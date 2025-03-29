@@ -1,3 +1,4 @@
+
 import { CheckoutHeader } from "@/components/checkout/CheckoutHeader";
 import { ExpressCheckout } from "@/components/checkout/ExpressCheckout";
 import { ContactForm } from "@/components/checkout/ContactForm";
@@ -11,9 +12,9 @@ const Index = () => {
     <div className="bg-white overflow-hidden">
       <CheckoutHeader />
 
-      <div className="flex w-full items-stretch justify-center flex-wrap">
-        <main className="bg-white flex min-w-60 flex-col grow shrink w-[659px]">
-          <div className="w-[660px] max-w-[660px] p-[38px] border-[rgba(222,222,222,1)] border-r">
+      <div className="flex w-full items-stretch">
+        <main className="bg-white flex min-w-60 flex-col grow w-[659px]">
+          <div className="w-[660px] max-w-[660px] p-[38px] border-r border-[rgba(222,222,222,1)]">
             <ExpressCheckout />
 
             <div className="flex w-full items-center gap-[11px] text-sm text-[#707070] font-normal whitespace-nowrap text-center leading-none flex-wrap pb-[26px]">
