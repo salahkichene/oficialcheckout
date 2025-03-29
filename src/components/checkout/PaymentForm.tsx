@@ -74,24 +74,24 @@ export const PaymentForm = () => {
           <Input 
             label="Card number" 
             defaultValue="4564 1234 1234 1234" 
-            className="w-full bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+            className="bg-white"
           />
           <div className="flex gap-3.5">
             <Input
               label="Expiration date (MM/YY)"
               defaultValue="12/24"
-              className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+              className="flex-1 bg-white"
             />
             <Input
               label="Security code"
               defaultValue="123"
-              className="flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+              className="flex-1 bg-white"
             />
           </div>
           <Input
             label="Name on card"
             defaultValue="Jordan Chen"
-            className="w-full bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid"
+            className="w-full bg-white"
           />
           <label className="flex items-center gap-2">
             <input type="checkbox" defaultChecked className="w-4 h-4" />
