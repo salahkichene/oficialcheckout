@@ -18,7 +18,7 @@ export const OrderSummary = () => {
     price: "$39.00",
     image: "https://cdn.builder.io/api/v1/image/assets/TEMP/29791eee6368db96bc453b57b9de3168b310d97c?placeholderIfAbsent=true"
   }]);
-  return <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px] pt-[17px] py-px">
+  return <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px] pt-[17px] py-[4px]">
       <div className="w-[444px] max-w-[444px]">
         <div className="w-full text-sm font-normal">
           {products.map((product, index) => <div key={index} className="flex w-full items-center gap-3.5 justify-center mb-3.5">
