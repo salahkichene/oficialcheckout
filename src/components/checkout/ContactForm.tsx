@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 export const ContactForm = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("jordan.chen@domain.com");
   const [receiveNews, setReceiveNews] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ export const ContactForm = () => {
           label="Email address or phone number"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-white"
+          className="min-h-[52px]"
         />
       </div>
       <div className="flex w-full gap-[11px] text-sm text-black tracking-[0.02px] flex-wrap mt-3.5">

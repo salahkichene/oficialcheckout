@@ -15,7 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     React.useEffect(() => {
       // Check if the input has a value on mount
       if (props.value) {
-        setIsFilled(Boolean(props.value));
+        setIsFilled(true);
       }
     }, [props.value]);
 
@@ -30,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             "h-[52px] w-full bg-white rounded-[5px] border border-solid px-[11px] text-black transition-all duration-200",
-            isFilled || isFocused ? "pt-7 pb-2" : "py-4", // Adjust padding based on state
+            isFilled ? "pt-7 pb-2" : "py-4", // Consistent padding for all inputs
             "placeholder-transparent", // Hide the default placeholder
             isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
             error ? "border-red-500" : "",
@@ -53,9 +53,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <label
             className={cn(
               "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
-              (isFilled || isFocused) ? 
-                "top-2 text-xs" : 
-                "top-1/2 -translate-y-1/2 text-base", // Center label when empty
+              isFilled ?
+                "top-2 text-xs" :
+                isFocused ? 
+                  "top-2 text-xs" : 
+                  "text-base top-1/2 -translate-y-1/2", // Center label when empty
               isFocused && "text-[#1773b0]",
               error ? "text-red-500" : ""
             )}
