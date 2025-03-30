@@ -55,10 +55,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
               isFilled ?
                 "top-2 text-xs" :
-                isFocused ? 
-                  "top-2 text-xs" : 
-                  "text-base top-1/2 -translate-y-1/2", // Center label when empty
-              isFocused && "text-[#1773b0]",
+                "text-base top-1/2 -translate-y-1/2", // Always center label when empty, regardless of focus
+              isFocused && !isFilled ? "" : "",  // No special style for focus without text
+              isFocused && isFilled && "text-[#1773b0]", // Only apply blue color when focused AND has text
               error ? "text-red-500" : ""
             )}
           >
