@@ -13,11 +13,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const [isFilled, setIsFilled] = React.useState(false);
     
     React.useEffect(() => {
-      // Check if the input has a value on mount and when value changes
-      if (props.value !== undefined && props.value !== "") {
+      // Check if the input has a value on mount
+      if (props.value) {
         setIsFilled(true);
-      } else {
-        setIsFilled(false);
       }
     }, [props.value]);
 
@@ -55,10 +53,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <label
             className={cn(
               "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
-              isFilled || isFocused ? 
-                "top-[6px] text-xs" : // Adjusted top position when filled OR focused
-                "text-base top-1/2 -translate-y-1/2", // Centered when empty and not focused
-              isFocused && "text-[#1773b0]", // Blue color when focused
+              isFilled ? 
+                "top-[6px] text-xs" : // Adjusted top position for more consistent spacing
+                "text-base top-1/2 -translate-y-1/2", // Centered when empty
+              isFocused && isFilled && "text-[#1773b0]", // Blue color when focused AND has text
               error ? "text-red-500" : ""
             )}
           >
