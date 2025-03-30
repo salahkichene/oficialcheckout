@@ -123,6 +123,18 @@ export const DeliveryForm = () => {
           </div>
         </div>
 
+        <Input
+          label="Address"
+          defaultValue="151 O'Connor Street"
+          className="w-full mt-3.5 bg-white"
+        />
+
+        <Input
+          label="Apartment, suite, etc. (optional)"
+          defaultValue="Unit 8"
+          className="w-full mt-3.5 bg-white"
+        />
+
         {country === "United Kingdom" ? (
           <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
             <Input
