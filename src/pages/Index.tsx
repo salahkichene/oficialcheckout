@@ -13,8 +13,10 @@ const Index = () => {
       <CheckoutHeader />
 
       <div className="flex w-full items-stretch p-0 m-0 gap-0 hero-checkout">
-        <main className="bg-white flex min-w-60 flex-col grow w-[659px] border-r border-[rgba(222,222,222,1)]">
-          <div className="w-full py-[38px] px-[38px] max-w-[660px] mx-auto">
+        <OrderSummary />
+        
+        <main className="bg-white flex min-w-60 flex-col grow w-[659px] border-l border-[rgba(222,222,222,1)]">
+          <div className="w-full py-[38px] px-[38px] max-w-[660px] ml-auto">
             <ExpressCheckout />
 
             <div className="flex w-full items-center gap-[11px] text-sm text-[#707070] font-normal whitespace-nowrap text-center leading-none flex-wrap pb-[26px]">
@@ -29,8 +31,6 @@ const Index = () => {
             <CheckoutFooter />
           </div>
         </main>
-
-        <OrderSummary />
       </div>
     </div>
   );
