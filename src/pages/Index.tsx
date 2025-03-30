@@ -13,8 +13,8 @@ const Index = () => {
       <CheckoutHeader />
 
       <div className="flex w-full items-stretch">
-        <main className="bg-white flex min-w-60 flex-col grow w-[659px]">
-          <div className="w-[660px] max-w-[660px] p-[38px] border-r border-[rgba(222,222,222,1)]">
+        <main className="bg-white flex min-w-60 flex-col grow w-[659px] border-r border-[rgba(222,222,222,1)]">
+          <div className="w-[660px] max-w-[660px] p-[38px]">
             <ExpressCheckout />
 
             <div className="flex w-full items-center gap-[11px] text-sm text-[#707070] font-normal whitespace-nowrap text-center leading-none flex-wrap pb-[26px]">
