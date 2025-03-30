@@ -1,6 +1,8 @@
+
 import { useState } from "react";
 import type { Product } from "./types";
 import { Input } from "@/components/ui/input";
+
 export const OrderSummary = () => {
   const [products] = useState<Product[]>([{
     name: "Monstera plant",
@@ -18,10 +20,13 @@ export const OrderSummary = () => {
     price: "$39.00",
     image: "https://cdn.builder.io/api/v1/image/assets/TEMP/29791eee6368db96bc453b57b9de3168b310d97c?placeholderIfAbsent=true"
   }]);
-  return <aside className="bg-neutral-100 flex min-w-60 flex-col justify-center grow shrink w-[520px] p-[38px] pt-[17px] py-[4px]">
-      <div className="w-[444px] max-w-[444px]">
-        <div className="w-full text-sm font-normal">
-          {products.map((product, index) => <div key={index} className="flex w-full items-center gap-3.5 justify-center mb-3.5">
+  
+  return (
+    <aside className="bg-neutral-100 flex min-w-60 flex-col justify-start grow shrink w-[520px] pt-[38px] px-[38px] pb-[4px]">
+      <div className="w-full max-w-[444px]">
+        <div className="w-full text-sm font-normal mb-6">
+          {products.map((product, index) => (
+            <div key={index} className="flex w-full items-center gap-3.5 mb-3.5">
               <img src={product.image} alt={product.name} className="aspect-[1] object-contain w-16 self-stretch shrink-0" />
               <div className="self-stretch flex min-w-60 flex-col items-stretch justify-center flex-1 shrink basis-[0%] my-auto">
                 <div className="text-black">{product.name}</div>
@@ -30,10 +35,11 @@ export const OrderSummary = () => {
               <div className="self-stretch flex gap-3.5 text-black whitespace-nowrap my-auto">
                 <div className="min-h-16">{product.price}</div>
               </div>
-            </div>)}
+            </div>
+          ))}
         </div>
 
-        <div className="w-full text-sm mt-[21px]">
+        <div className="w-full text-sm mb-6">
           <div className="flex gap-3.5">
             <div className="flex-1">
               <Input label="Discount code" className="bg-white" />
@@ -44,7 +50,7 @@ export const OrderSummary = () => {
           </div>
         </div>
 
-        <div className="w-full text-black font-normal mt-[21px]">
+        <div className="w-full text-black font-normal">
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span>Subtotal</span>
@@ -66,5 +72,6 @@ export const OrderSummary = () => {
           </div>
         </div>
       </div>
-    </aside>;
+    </aside>
+  );
 };
