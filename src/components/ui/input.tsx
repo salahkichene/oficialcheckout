@@ -15,7 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     React.useEffect(() => {
       // Check if the input has a value on mount
       if (props.value) {
-        setIsFilled(true);
+        setIsFilled(Boolean(props.value));
       }
     }, [props.value]);
 
@@ -55,7 +55,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
               (isFilled || isFocused) ? 
                 "top-2 text-xs" : 
-                "text-base top-1/2 -translate-y-1/2", // Center label when empty
+                "top-1/2 -translate-y-1/2 text-base", // Center label when empty
               isFocused && "text-[#1773b0]",
               error ? "text-red-500" : ""
             )}

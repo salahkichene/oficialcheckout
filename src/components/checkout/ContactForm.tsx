@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
 export const ContactForm = () => {
-  const [email, setEmail] = useState("jordan.chen@domain.com");
+  const [email, setEmail] = useState("");
   const [receiveNews, setReceiveNews] = useState(false);
 
   return (
