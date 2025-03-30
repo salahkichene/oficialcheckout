@@ -54,7 +54,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
               isFilled ? 
-                "top-2 text-xs" : // Consistent positioning when filled
+                "top-[6px] text-xs" : // Adjusted top position for more consistent spacing
                 "text-base top-1/2 -translate-y-1/2", // Centered when empty
               isFocused && isFilled && "text-[#1773b0]", // Blue color when focused AND has text
               error ? "text-red-500" : ""
