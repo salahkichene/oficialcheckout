@@ -17,7 +17,7 @@ export const ContactForm = () => {
           label="Email address or phone number"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="min-h-[52px]"
+          className="bg-white"
         />
       </div>
       <div className="flex w-full gap-[11px] text-sm text-black tracking-[0.02px] flex-wrap mt-3.5">

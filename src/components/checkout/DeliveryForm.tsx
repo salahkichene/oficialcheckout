@@ -53,32 +53,74 @@ export const DeliveryForm = () => {
     }
   };
 
-  // Handle showing the correct region selection based on country
-  const renderRegionField = () => {
+  // Render appropriate region/postal fields based on country
+  const renderAddressFields = () => {
+    if (country === "United Kingdom") {
+      return (
+        <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
+          <div className="min-w-[181px] flex-1">
+            <Input
+              label="City"
+              defaultValue="London"
+              className="bg-white"
+            />
+          </div>
+          <div className="min-w-[181px] flex-1">
+            <Input
+              label="Postcode"
+              defaultValue="SW1A 1AA"
+              className="bg-white"
+            />
+          </div>
+        </div>
+      );
+    }
+
     return (
-      <select className="min-w-40 flex-1 bg-white border rounded-[5px] border-[rgba(222,222,222,1)] border-solid p-3">
-        {country === "Canada" && (
-          <>
-            <option value="ON">Ontario</option>
-            <option value="QC">Quebec</option>
-            <option value="BC">British Columbia</option>
-          </>
-        )}
-        {country === "United States" && (
-          <>
-            <option value="CA">California</option>
-            <option value="NY">New York</option>
-            <option value="TX">Texas</option>
-          </>
-        )}
-        {country === "United Kingdom" && (
-          <>
-            <option value="LON">London</option>
-            <option value="MAN">Manchester</option>
-            <option value="BIR">Birmingham</option>
-          </>
-        )}
-      </select>
+      <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
+        <div className="min-w-[181px] flex-1">
+          <Input
+            label="City"
+            defaultValue={country === "United States" ? "New York" : "Ottawa"}
+            className="bg-white"
+          />
+        </div>
+        <div className="min-w-[181px] flex-1">
+          <div className="relative w-full">
+            <select className="h-[52px] w-full bg-white rounded-[5px] border border-[#dedede] border-solid px-[11px] py-4 appearance-none">
+              {country === "Canada" && (
+                <>
+                  <option value="ON">Ontario</option>
+                  <option value="QC">Quebec</option>
+                  <option value="BC">British Columbia</option>
+                </>
+              )}
+              {country === "United States" && (
+                <>
+                  <option value="CA">California</option>
+                  <option value="NY">New York</option>
+                  <option value="TX">Texas</option>
+                </>
+              )}
+            </select>
+            <label className="absolute left-[11px] top-1/2 -translate-y-1/2 text-base pointer-events-none text-[#707070]">
+              {getRegionLabel()}
+            </label>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L11 1" stroke="#707070" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="min-w-[181px] flex-1">
+          <Input
+            label={getPostalLabel()}
+            defaultValue={country === "United States" ? "10001" : "K2P 2L8"}
+            className="bg-white"
+          />
+        </div>
+      </div>
     );
   };
 
@@ -89,9 +131,9 @@ export const DeliveryForm = () => {
       </h2>
       <div className="w-full font-normal mt-3.5">
         <div className="w-full whitespace-nowrap">
-          <div className="bg-white border flex w-full flex-wrap rounded-[5px] border-[rgba(222,222,222,1)] border-solid">
+          <div className="relative w-full">
             <select 
-              className="min-w-60 min-h-[52px] overflow-hidden flex-1 shrink basis-[0%] pt-[11px] px-[11px]"
+              className="h-[52px] w-full bg-white rounded-[5px] border border-[#dedede] border-solid px-[11px] py-4 appearance-none"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -103,6 +145,14 @@ export const DeliveryForm = () => {
               <option value="Germany">Germany</option>
               <option value="Japan">Japan</option>
             </select>
+            <label className="absolute left-[11px] top-1/2 -translate-y-1/2 text-base pointer-events-none text-[#707070]">
+              Country/Region
+            </label>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+              <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L11 1" stroke="#707070" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -135,34 +185,14 @@ export const DeliveryForm = () => {
           className="w-full mt-3.5 bg-white"
         />
 
-        {country === "United Kingdom" ? (
-          <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
-            <Input
-              label="City"
-              defaultValue="London"
-              className="min-w-40 flex-1 bg-white"
-            />
-            <Input
-              label={getPostalLabel()}
-              defaultValue="SW1A 1AA"
-              className="min-w-40 flex-1 bg-white"
-            />
-          </div>
-        ) : (
-          <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
-            <Input
-              label="City"
-              defaultValue={country === "United States" ? "New York" : "Ottawa"}
-              className="min-w-40 flex-1 bg-white"
-            />
-            {renderRegionField()}
-            <Input
-              label={getPostalLabel()}
-              defaultValue={country === "United States" ? "10001" : "K2P 2L8"}
-              className="min-w-40 flex-1 bg-white"
-            />
-          </div>
-        )}
+        {renderAddressFields()}
+        
+        <div className="w-full mt-3.5">
+          <Input
+            label="Phone (optional)"
+            className="w-full bg-white"
+          />
+        </div>
       </div>
 
       <div className="w-full mt-[26px]">
