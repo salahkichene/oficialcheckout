@@ -12,7 +12,7 @@ const Index = () => {
     <div className="bg-white overflow-hidden">
       <CheckoutHeader />
 
-      <div className="flex w-full items-stretch">
+      <div className="flex w-full items-stretch p-0 m-0 gap-0 hero-checkout">
         <main className="bg-white flex min-w-60 flex-col grow w-[659px] border-r border-[rgba(222,222,222,1)]">
           <div className="w-full py-[38px] px-[38px] max-w-[660px] mx-auto">
             <ExpressCheckout />
