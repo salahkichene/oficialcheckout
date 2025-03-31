@@ -2,6 +2,8 @@
 import { useState } from "react";
 import type { PaymentMethod } from "./types";
 import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const PaymentForm = () => {
   const [paymentMethods] = useState<PaymentMethod[]>([
@@ -9,9 +11,10 @@ export const PaymentForm = () => {
       id: "card",
       name: "Credit or debit card",
       icons: [
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/e94a3604e4259c1d6c78f7d5fa7fc8224b788cb0?placeholderIfAbsent=true",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/24a12d4f9a6d9b16159fff3c87afd452dbf00be4?placeholderIfAbsent=true",
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/ccdfcef5cf2b174d73af01ebe1232ef9f6a8741e?placeholderIfAbsent=true",
+        "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.sxIq5Dot.svg",
+        "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/mastercard.1c4_lyMp.svg",
+        "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/amex.Csr7hRoy.svg",
+        "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/discover.C7UbFpNb.svg",
       ],
       selected: true,
     },
@@ -21,6 +24,14 @@ export const PaymentForm = () => {
       selected: false,
     },
   ]);
+
+  // Additional card icons for the popup
+  const additionalCardIcons = [
+    "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/diners_club.B9hVEmwz.svg",
+    "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/elo.Clup5T29.svg",
+    "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/jcb.BgZHqF0u.svg",
+    "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/unionpay.8M-Boq_z.svg"
+  ];
 
   return (
     <section className="w-full pb-[38px]">
@@ -49,20 +60,37 @@ export const PaymentForm = () => {
               checked={method.selected}
               className="w-[18px] h-[18px]"
             />
-            <div className="flex min-w-60 gap-[7px] flex-wrap flex-1 shrink basis-[0%]">
+            <div className="flex min-w-60 gap-[7px] flex-wrap items-center flex-1 shrink basis-[0%]">
               <div className="min-w-60 text-sm text-black font-normal tracking-[0.02px] flex-1 shrink basis-[0%]">
                 {method.name}
               </div>
               {method.icons && (
-                <div className="flex gap-[5px]">
+                <div className="flex items-center gap-[5px]">
                   {method.icons.map((icon, index) => (
                     <img
                       key={index}
                       src={icon}
                       alt={`Payment method ${index + 1}`}
-                      className="aspect-[1.58] object-contain w-[38px]"
+                      className="h-6 object-contain"
                     />
                   ))}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="ml-1 text-[rgba(23,115,176,1)] font-medium text-sm">+4</button>
+                    </PopoverTrigger>
+                    <PopoverContent side="top" className="bg-black text-white p-3 rounded-md border-none w-auto">
+                      <div className="flex gap-2">
+                        {additionalCardIcons.map((icon, index) => (
+                          <img
+                            key={index}
+                            src={icon}
+                            alt={`Additional payment method ${index + 1}`}
+                            className="h-6 object-contain"
+                          />
+                        ))}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
                 </div>
               )}
             </div>
