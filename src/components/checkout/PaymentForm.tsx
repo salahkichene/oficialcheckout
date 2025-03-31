@@ -2,8 +2,7 @@
 import { useState } from "react";
 import type { PaymentMethod } from "./types";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 export const PaymentForm = () => {
   const [paymentMethods] = useState<PaymentMethod[]>([
@@ -74,11 +73,11 @@ export const PaymentForm = () => {
                       className="h-6 object-contain"
                     />
                   ))}
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <button className="ml-1 text-[rgba(23,115,176,1)] font-medium text-sm">+4</button>
-                    </PopoverTrigger>
-                    <PopoverContent side="top" className="bg-black text-white p-3 rounded-md border-none w-auto">
+                  <HoverCard openDelay={0} closeDelay={100}>
+                    <HoverCardTrigger asChild>
+                      <div className="ml-1 bg-white text-[rgba(23,115,176,1)] font-medium text-sm border border-gray-200 rounded-sm h-6 flex items-center justify-center px-1.5 cursor-pointer">+4</div>
+                    </HoverCardTrigger>
+                    <HoverCardContent side="top" align="center" className="bg-black text-white p-3 rounded-md border-none w-auto">
                       <div className="flex gap-2">
                         {additionalCardIcons.map((icon, index) => (
                           <img
@@ -89,8 +88,8 @@ export const PaymentForm = () => {
                           />
                         ))}
                       </div>
-                    </PopoverContent>
-                  </Popover>
+                    </HoverCardContent>
+                  </HoverCard>
                 </div>
               )}
             </div>
