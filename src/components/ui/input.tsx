@@ -14,10 +14,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     
     React.useEffect(() => {
       // Check if the input has a value on mount
-      if (props.value) {
+      if (props.value || props.defaultValue) {
         setIsFilled(true);
       }
-    }, [props.value]);
+    }, [props.value, props.defaultValue]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setIsFilled(e.target.value.length > 0);
@@ -30,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             "h-[52px] w-full bg-white rounded-[5px] border border-solid px-[11px] text-black transition-all duration-200",
-            isFilled ? "pt-7 pb-2" : "py-4", // Consistent padding for all inputs
+            isFilled ? "pt-7 pb-2" : "py-4", // Adjust vertical padding based on filled state
             "placeholder-transparent", // Hide the default placeholder
             isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
             error ? "border-red-500" : "",
@@ -53,10 +53,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <label
             className={cn(
               "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
-              isFilled ? 
-                "top-[6px] text-xs" : // Adjusted top position for more consistent spacing
-                "text-base top-1/2 -translate-y-1/2", // Centered when empty
-              isFocused && isFilled && "text-[#1773b0]", // Blue color when focused AND has text
+              isFilled || isFocused ? 
+                "top-[6px] text-xs" : // Label moves up when input has content or focus
+                "text-base top-1/2 -translate-y-1/2", // Centered when empty and not focused
+              isFocused && "text-[#1773b0]", // Blue color when focused
               error ? "text-red-500" : ""
             )}
           >
