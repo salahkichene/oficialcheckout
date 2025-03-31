@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
+import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 
 export const ContactForm = () => {
   const [email, setEmail] = useState("jordan.chen@domain.com");
@@ -12,12 +12,12 @@ export const ContactForm = () => {
         Contact
       </h2>
       <div className="w-full mt-3.5">
-        <Input
+        <FloatingLabelInput
           type="email"
           label="Email address or phone number"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-white min-h-[52px]"
+          className="bg-white"
         />
       </div>
       <div className="flex w-full gap-[11px] text-sm text-black tracking-[0.02px] flex-wrap mt-3.5">
