@@ -6,6 +6,7 @@ interface FloatingLabelInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
+  as?: "input" | "select";
 }
 
 export function FloatingLabelInput({
@@ -14,6 +15,8 @@ export function FloatingLabelInput({
   onChange,
   className,
   error,
+  as = "input",
+  children,
   ...props
 }: FloatingLabelInputProps) {
   const [isFocused, setIsFocused] = useState(false);
@@ -26,23 +29,46 @@ export function FloatingLabelInput({
     }
   }, [value, props.defaultValue]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setIsFilled(e.target.value.length > 0);
-    if (onChange) onChange(e);
+    if (onChange) onChange(e as any);
   };
 
-  return (
-    <div className="relative w-full">
+  const sharedStyles = cn(
+    "h-[52px] w-full bg-white rounded-[5px] border border-solid px-[11px] text-black transition-all duration-200",
+    isFilled ? "pt-7 pb-2" : "py-4", // Adjust vertical padding based on filled state
+    "placeholder-transparent", // Hide the default placeholder
+    isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
+    error ? "border-red-500" : "",
+    className
+  );
+
+  const renderInput = () => {
+    if (as === "select") {
+      return (
+        <select
+          value={value as string}
+          className={sharedStyles}
+          onFocus={(e) => {
+            setIsFocused(true);
+            if (props.onFocus) props.onFocus(e as any);
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            if (props.onBlur) props.onBlur(e as any);
+          }}
+          onChange={handleChange}
+          {...props as any}
+        >
+          {children}
+        </select>
+      );
+    }
+
+    return (
       <input
         value={value}
-        className={cn(
-          "h-[52px] w-full bg-white rounded-[5px] border border-solid px-[11px] text-black transition-all duration-200",
-          isFilled ? "pt-7 pb-2" : "py-4", // Adjust vertical padding based on filled state
-          "placeholder-transparent", // Hide the default placeholder
-          isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
-          error ? "border-red-500" : "",
-          className
-        )}
+        className={sharedStyles}
         placeholder={label || ""}
         onFocus={(e) => {
           setIsFocused(true);
@@ -52,9 +78,15 @@ export function FloatingLabelInput({
           setIsFocused(false);
           if (props.onBlur) props.onBlur(e);
         }}
-        onChange={handleChange}
+        onChange={handleChange as any}
         {...props}
       />
+    );
+  };
+
+  return (
+    <div className="relative w-full">
+      {renderInput()}
       {label && (
         <label
           className={cn(
