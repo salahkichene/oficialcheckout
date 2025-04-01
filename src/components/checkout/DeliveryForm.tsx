@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import type { ShippingMethod } from "./types";
 import { Input } from "@/components/ui/input";
@@ -441,64 +440,48 @@ export const DeliveryForm = () => {
           </div>
         </div>
 
-        {/* Render different layouts based on country selection */}
-        {currentCountry.code === "GB" ? (
-          <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
-            <div className="flex-1 min-w-[181px]">
-              <FloatingLabelInput
-                label="City"
-                defaultValue=""
-                className="bg-white"
-              />
-            </div>
-            <div className="flex-1 min-w-[181px]">
-              <FloatingLabelInput
-                label={currentCountry.postalLabel || "Postal code"}
-                defaultValue=""
-                className="bg-white"
-              />
-            </div>
+        {/* Modified section: Combine City, State/Province, and Postal Code into a single row */}
+        <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
+          {/* City field */}
+          <div className="flex-1 min-w-[150px]">
+            <FloatingLabelInput
+              label="City"
+              defaultValue=""
+              className="bg-white"
+            />
           </div>
-        ) : (
-          <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
-            <div className="flex-1 min-w-[181px]">
+          
+          {/* State/Province field - conditionally rendered based on country */}
+          {currentCountry.hasState && (
+            <div className="flex-1 min-w-[150px] relative">
               <FloatingLabelInput
-                label="City"
-                defaultValue=""
-                className="bg-white"
-              />
-            </div>
-            
-            {currentCountry.hasState && (
-              <div className="flex-1 min-w-[181px] relative">
-                <FloatingLabelInput
-                  as="select"
-                  label={currentCountry.stateLabel || "State/Province"}
-                  className="min-h-[52px] w-full cursor-pointer bg-white appearance-none pr-8"
-                >
-                  {currentCountry.states?.map((state) => (
-                    <option key={state.code} value={state.code}>
-                      {state.name}
-                    </option>
-                  ))}
-                </FloatingLabelInput>
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
+                as="select"
+                label={currentCountry.stateLabel || "State/Province"}
+                className="min-h-[52px] w-full cursor-pointer bg-white appearance-none pr-8"
+              >
+                {currentCountry.states?.map((state) => (
+                  <option key={state.code} value={state.code}>
+                    {state.name}
+                  </option>
+                ))}
+              </FloatingLabelInput>
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
-            )}
-            
-            <div className="flex-1 min-w-[181px]">
-              <FloatingLabelInput
-                label={currentCountry.postalLabel || "Postal code"}
-                defaultValue=""
-                className="bg-white"
-              />
             </div>
+          )}
+          
+          {/* Postal/Zip Code field */}
+          <div className="flex-1 min-w-[150px]">
+            <FloatingLabelInput
+              label={currentCountry.postalLabel || "Postal code"}
+              defaultValue=""
+              className="bg-white"
+            />
           </div>
-        )}
+        </div>
       </div>
 
       <div className="w-full mt-[26px]">
