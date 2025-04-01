@@ -48,7 +48,7 @@ export function FloatingLabelInput({
       return (
         <select
           value={value as string}
-          className={cn(sharedStyles, "text-center")} // Added text-center class
+          className={sharedStyles}
           onFocus={(e) => {
             setIsFocused(true);
             if (props.onFocus) props.onFocus(e as any);
@@ -95,8 +95,7 @@ export function FloatingLabelInput({
               "top-[6px] text-xs" : // Label moves up only when input has content
               "text-base top-1/2 -translate-y-1/2", // Centered when empty 
             isFocused && "text-[#1773b0]", // Blue color when focused
-            error ? "text-red-500" : "",
-            as === "select" && isFilled && "z-10" // Ensure the label appears above the select text
+            error ? "text-red-500" : ""
           )}
         >
           {label}
