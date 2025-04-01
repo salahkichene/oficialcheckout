@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { ShippingMethod } from "./types";
 import { Input } from "@/components/ui/input";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 
 interface CountryOption {
   code: string;
@@ -376,11 +376,11 @@ export const DeliveryForm = () => {
         Delivery
       </h2>
       <div className="w-full font-normal mt-3.5">
-        <div className="w-full relative">
+        <div className="w-full relative country-region-dropdown">
           <FloatingLabelInput
             as="select"
             label="Country/Region"
-            className="min-h-[52px] w-full cursor-pointer bg-white appearance-none pr-8"
+            className="min-h-[52px] w-full cursor-pointer bg-white appearance-none pr-10"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           >
@@ -390,10 +390,8 @@ export const DeliveryForm = () => {
               </option>
             ))}
           </FloatingLabelInput>
-          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500">
+            <ChevronDown className="h-5 w-5" />
           </div>
         </div>
 
@@ -447,11 +445,11 @@ export const DeliveryForm = () => {
           </div>
           
           {currentCountry.hasState && (
-            <div className="flex-1 min-w-[150px] relative">
+            <div className="flex-1 min-w-[150px] relative state-dropdown">
               <FloatingLabelInput
                 as="select"
                 label={currentCountry.stateLabel || "State/Province"}
-                className="min-h-[52px] w-full cursor-pointer bg-white appearance-none pr-8"
+                className="min-h-[52px] w-full cursor-pointer bg-white appearance-none pr-10"
               >
                 {currentCountry.states?.map((state) => (
                   <option key={state.code} value={state.code}>
@@ -459,10 +457,8 @@ export const DeliveryForm = () => {
                   </option>
                 ))}
               </FloatingLabelInput>
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500">
+                <ChevronDown className="h-5 w-5" />
               </div>
             </div>
           )}

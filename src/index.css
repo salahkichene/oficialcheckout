@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,4 +99,39 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Country/Region dropdown specific styles */
+.country-region-dropdown select,
+.state-dropdown select {
+  z-index: 10;
+  position: relative;
+  background-color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.country-region-dropdown .absolute,
+.state-dropdown .absolute {
+  z-index: 5;
+}
+
+/* Ensure the icon is properly aligned and visible */
+.country-region-dropdown svg,
+.state-dropdown svg {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6b7280;
+}
+
+/* Ensure dropdown opens properly */
+.country-region-dropdown select:focus,
+.state-dropdown select:focus {
+  border-color: rgba(23, 115, 176, 1);
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(23, 115, 176, 0.2);
 }
