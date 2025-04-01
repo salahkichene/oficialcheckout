@@ -29,6 +29,14 @@ export function FloatingLabelInput({
     }
   }, [value, props.defaultValue]);
 
+  // For select elements, we always want to show the label at the top
+  // since they always have a selected value
+  useEffect(() => {
+    if (as === "select") {
+      setIsFilled(true);
+    }
+  }, [as]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setIsFilled(e.target.value.length > 0);
     if (onChange) onChange(e as any);
@@ -93,7 +101,7 @@ export function FloatingLabelInput({
         <label
           className={cn(
             "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
-            isFilled || (as === "select" && isFocused) ? 
+            isFilled ? 
               "top-[6px] text-xs" : // Label moves up when input has content or select is focused
               "text-base top-1/2 -translate-y-1/2", // Centered when empty 
             isFocused && "text-[#1773b0]", // Blue color when focused
