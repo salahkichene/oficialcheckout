@@ -34,12 +34,14 @@ export function FloatingLabelInput({
     if (onChange) onChange(e as any);
   };
 
+  // Adjust styles for select elements vs. inputs
   const sharedStyles = cn(
     "h-[52px] w-full bg-white rounded-[5px] border border-solid px-[11px] text-black transition-all duration-200",
     isFilled ? "pt-7 pb-2" : "py-4", // Adjust vertical padding based on filled state
     "placeholder-transparent", // Hide the default placeholder
     isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
     error ? "border-red-500" : "",
+    as === "select" && "text-left appearance-none", // Adjust text alignment for selects
     className
   );
 

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import type { ShippingMethod } from "./types";
 import { Input } from "@/components/ui/input";
@@ -379,7 +380,7 @@ export const DeliveryForm = () => {
         Delivery
       </h2>
       <div className="w-full font-normal mt-3.5">
-        <div className="w-full">
+        <div className="w-full relative">
           <FloatingLabelInput
             as="select"
             label="Country/Region"
@@ -525,4 +526,4 @@ export const DeliveryForm = () => {
       </div>
     </section>
   );
-};
+}
