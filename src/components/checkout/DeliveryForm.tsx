@@ -1,11 +1,9 @@
-
 import { useState, useEffect } from "react";
 import type { ShippingMethod } from "./types";
 import { Input } from "@/components/ui/input";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Search } from "lucide-react";
 
-// Define the country data type
 interface CountryOption {
   code: string;
   name: string;
@@ -37,7 +35,6 @@ export const DeliveryForm = () => {
     },
   ]);
 
-  // Comprehensive list of countries with their specific fields
   const countries: CountryOption[] = [
     {
       code: "US",
@@ -371,7 +368,6 @@ export const DeliveryForm = () => {
     { code: "ZW", name: "Zimbabwe", hasState: false },
   ];
 
-  // Get current country data
   const currentCountry = countries.find((c) => c.code === country) || countries[0];
 
   return (
@@ -441,9 +437,7 @@ export const DeliveryForm = () => {
           </div>
         </div>
 
-        {/* Modified section: Combine City, State/Province, and Postal Code into a single row */}
         <div className="flex w-full gap-3.5 flex-wrap mt-3.5">
-          {/* City field */}
           <div className="flex-1 min-w-[150px]">
             <FloatingLabelInput
               label="City"
@@ -452,7 +446,6 @@ export const DeliveryForm = () => {
             />
           </div>
           
-          {/* State/Province field - conditionally rendered based on country */}
           {currentCountry.hasState && (
             <div className="flex-1 min-w-[150px] relative">
               <FloatingLabelInput
@@ -474,7 +467,6 @@ export const DeliveryForm = () => {
             </div>
           )}
           
-          {/* Postal/Zip Code field */}
           <div className="flex-1 min-w-[150px]">
             <FloatingLabelInput
               label={currentCountry.postalLabel || "Postal code"}

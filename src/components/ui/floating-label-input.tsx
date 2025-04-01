@@ -41,7 +41,7 @@ export function FloatingLabelInput({
     "placeholder-transparent", // Hide the default placeholder
     isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
     error ? "border-red-500" : "",
-    as === "select" && "text-left appearance-none", // Adjust text alignment for selects
+    as === "select" && "appearance-none", // Remove default select styling
     className
   );
 
@@ -93,8 +93,8 @@ export function FloatingLabelInput({
         <label
           className={cn(
             "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
-            isFilled ? 
-              "top-[6px] text-xs" : // Label moves up only when input has content
+            isFilled || (as === "select" && isFocused) ? 
+              "top-[6px] text-xs" : // Label moves up when input has content or select is focused
               "text-base top-1/2 -translate-y-1/2", // Centered when empty 
             isFocused && "text-[#1773b0]", // Blue color when focused
             error ? "text-red-500" : ""
