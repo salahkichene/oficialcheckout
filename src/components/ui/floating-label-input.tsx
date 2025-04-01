@@ -45,12 +45,12 @@ export function FloatingLabelInput({
   // Improved styles for select elements vs. inputs
   const sharedStyles = cn(
     "h-[52px] w-full bg-white rounded-[5px] border border-solid px-[11px] text-black transition-all duration-200",
-    // Reduced top padding for better vertical alignment
-    isFilled ? "pt-5 pb-2" : "py-4", 
+    // Adjust padding to position text correctly
+    isFilled && as === "select" ? "pt-4 pb-1" : isFilled ? "pt-5 pb-2" : "py-4", 
     "placeholder-transparent", // Hide the default placeholder
     isFocused ? "border-[#1773b0] outline-none" : "border-[#dedede]",
     error ? "border-red-500" : "",
-    as === "select" && "appearance-none pr-8", // Added right padding for chevron
+    as === "select" && "appearance-none pr-10", // Increased right padding for chevron
     className
   );
 
@@ -94,13 +94,13 @@ export function FloatingLabelInput({
     );
   };
 
-  // Added custom chevron rendering
+  // Enhanced chevron rendering with more visible styling
   const renderChevron = () => {
     if (as === "select") {
       return (
         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L5 5L9 1" stroke="#707070" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="#505050" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       );
@@ -111,24 +111,24 @@ export function FloatingLabelInput({
   return (
     <div className="relative w-full">
       {renderInput()}
-      {/* Improved label positioning - moved up for less gap */}
+      {/* Enhanced label visibility and positioning */}
       {label && (
         <label
           className={cn(
-            "absolute left-[11px] transition-all duration-200 pointer-events-none text-[#707070]",
+            "absolute left-[11px] transition-all duration-200 pointer-events-none",
             isFilled ? 
-              "top-[3px] text-xs" : // Moved up from top-[6px] for less gap
-              "text-base top-1/2 -translate-y-1/2", // Centered when empty 
+              "top-[3px] text-xs font-medium text-[#505050]" : // Better visibility 
+              "text-base top-1/2 -translate-y-1/2 text-[#707070]", // Centered when empty 
             isFocused && "text-[#1773b0]", // Blue color when focused
             error ? "text-red-500" : "",
-            // Additional tweaks for select elements
-            as === "select" && isFilled && "top-[3px]"
+            // Force label visibility for select elements
+            as === "select" && "block"
           )}
         >
           {label}
         </label>
       )}
-      {/* Custom chevron icon for select elements */}
+      {/* Always render the chevron for select elements */}
       {renderChevron()}
       {error && (
         <span className="text-red-500 text-xs mt-1 block">
