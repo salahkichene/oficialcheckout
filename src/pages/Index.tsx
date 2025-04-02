@@ -1,6 +1,5 @@
 
 import { CheckoutHeader } from "@/components/checkout/CheckoutHeader";
-import { ExpressCheckout } from "@/components/checkout/ExpressCheckout";
 import { ContactForm } from "@/components/checkout/ContactForm";
 import { DeliveryForm } from "@/components/checkout/DeliveryForm";
 import { PaymentForm } from "@/components/checkout/PaymentForm";
@@ -15,14 +14,6 @@ const Index = () => {
       <div className="flex w-full items-stretch p-0 m-0 gap-0 hero-checkout">
         <main className="bg-white flex min-w-60 flex-col grow w-[659px] border-r border-[rgba(222,222,222,1)]">
           <div className="w-full py-[38px] px-[38px] max-w-[660px] ml-auto">
-            <ExpressCheckout />
-
-            <div className="flex w-full items-center gap-[11px] text-sm text-[#707070] font-normal whitespace-nowrap text-center leading-none flex-wrap pb-[26px]">
-              <div className="bg-[rgba(222,222,222,1)] self-stretch flex min-w-60 w-[270px] shrink h-px flex-1 basis-[0%] my-auto" />
-              <div className="self-stretch my-auto">OR</div>
-              <div className="bg-[rgba(222,222,222,1)] self-stretch flex min-w-60 w-[271px] shrink h-px flex-1 basis-[0%] my-auto" />
-            </div>
-
             <ContactForm />
             <DeliveryForm />
             <PaymentForm />
