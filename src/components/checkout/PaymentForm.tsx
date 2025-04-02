@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import type { PaymentMethod } from "./types";
 import { Input } from "@/components/ui/input";
@@ -16,11 +15,6 @@ export const PaymentForm = () => {
         "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/discover.C7UbFpNb.svg",
       ],
       selected: true,
-    },
-    {
-      id: "paypal",
-      name: "PayPal",
-      selected: false,
     },
   ]);
 
