@@ -4,7 +4,7 @@ import type { PaymentMethod } from "./types";
 import { Input } from "@/components/ui/input";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ShieldCheck, Store } from "lucide-react";
 
 export const PaymentForm = () => {
   const [paymentMethods] = useState<PaymentMethod[]>([
@@ -222,7 +222,16 @@ export const PaymentForm = () => {
         </div>
       </div>
 
-      <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[5px] py-4 mt-6">
+      {/* Secure checkout message */}
+      <div className="flex items-center justify-center gap-2 mt-4 mb-2.5 text-gray-500">
+        <div className="flex items-center gap-1.5">
+          <Store className="w-4 h-4 text-gray-400" />
+          <ShieldCheck className="w-4 h-4 text-gray-400" />
+        </div>
+        <span className="text-sm">Secure checkout - Your information is protected</span>
+      </div>
+
+      <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[5px] py-4">
         Pay now
       </button>
     </section>
