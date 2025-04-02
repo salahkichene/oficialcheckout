@@ -1,7 +1,10 @@
+
 import { useState } from "react";
 import type { PaymentMethod } from "./types";
 import { Input } from "@/components/ui/input";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { FloatingLabelInput } from "@/components/ui/floating-label-input";
+import { ChevronDown } from "lucide-react";
 
 export const PaymentForm = () => {
   const [paymentMethods] = useState<PaymentMethod[]>([
@@ -24,6 +27,18 @@ export const PaymentForm = () => {
     "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/elo.Clup5T29.svg",
     "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/jcb.BgZHqF0u.svg",
     "https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/unionpay.8M-Boq_z.svg"
+  ];
+
+  const [useSameAddress, setUseSameAddress] = useState(true);
+  const [country, setCountry] = useState("US");
+
+  const countries = [
+    { code: "US", name: "United States" },
+    { code: "CA", name: "Canada" },
+    { code: "GB", name: "United Kingdom" },
+    { code: "AU", name: "Australia" },
+    { code: "FR", name: "France" },
+    { code: "DE", name: "Germany" },
   ];
 
   return (
@@ -115,11 +130,95 @@ export const PaymentForm = () => {
             className="w-full bg-white"
           />
           <label className="flex items-center gap-2">
-            <input type="checkbox" defaultChecked className="w-4 h-4" />
+            <input 
+              type="checkbox" 
+              checked={useSameAddress} 
+              onChange={(e) => setUseSameAddress(e.target.checked)} 
+              className="w-4 h-4" 
+            />
             <span className="text-sm">
               Use shipping address as billing address
             </span>
           </label>
+
+          {/* Billing Address Form (conditional rendering) */}
+          {!useSameAddress && (
+            <div className="mt-3.5 space-y-2.5">
+              <div className="text-sm font-medium text-[#505050] mb-1">Billing Address</div>
+              
+              <div className="w-full relative">
+                <FloatingLabelInput
+                  as="select"
+                  label="Country/Region"
+                  className="min-h-[40px] text-sm w-full cursor-pointer bg-white appearance-none"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                >
+                  {countries.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.name}
+                    </option>
+                  ))}
+                </FloatingLabelInput>
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-500">
+                  <ChevronDown className="h-4 w-4" />
+                </div>
+              </div>
+
+              <div className="flex w-full gap-2.5">
+                <div className="flex-1">
+                  <FloatingLabelInput
+                    label="First name"
+                    defaultValue=""
+                    className="min-h-[40px] text-sm bg-white"
+                  />
+                </div>
+                <div className="flex-1">
+                  <FloatingLabelInput
+                    label="Last name"
+                    defaultValue=""
+                    className="min-h-[40px] text-sm bg-white"
+                  />
+                </div>
+              </div>
+              
+              <FloatingLabelInput
+                label="Address"
+                defaultValue=""
+                className="min-h-[40px] text-sm bg-white"
+              />
+              
+              <FloatingLabelInput
+                label="Apartment, suite, etc. (optional)"
+                defaultValue=""
+                className="min-h-[40px] text-sm bg-white"
+              />
+              
+              <div className="flex w-full gap-2.5">
+                <div className="flex-1">
+                  <FloatingLabelInput
+                    label="City"
+                    defaultValue=""
+                    className="min-h-[40px] text-sm bg-white"
+                  />
+                </div>
+                <div className="flex-1">
+                  <FloatingLabelInput
+                    label="State"
+                    defaultValue=""
+                    className="min-h-[40px] text-sm bg-white"
+                  />
+                </div>
+                <div className="flex-1">
+                  <FloatingLabelInput
+                    label="ZIP code"
+                    defaultValue=""
+                    className="min-h-[40px] text-sm bg-white"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
