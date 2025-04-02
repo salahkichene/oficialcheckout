@@ -10,7 +10,7 @@ export const ContactForm = () => {
       <div className="w-full mt-3.5">
         <FloatingLabelInput type="email" label="Email address or phone number" value={email} onChange={e => setEmail(e.target.value)} className="bg-white" />
       </div>
-      <div className="flex w-full gap-[11px] text-sm text-black tracking-[0.02px] flex-wrap mt-3.5 px-[5px]">
+      <div className="flex w-full gap-[2px] text-sm text-black tracking-[0.02px] flex-wrap mt-3.5 px-[5px]">
         <input type="checkbox" checked={receiveNews} onChange={e => setReceiveNews(e.target.checked)} className="aspect-[0.86] w-[18px] mx-[10px]" />
         <label className="flex min-w-60 items-center gap-3.5 flex-1 shrink basis-[0%]">
           Email me with news and offers
