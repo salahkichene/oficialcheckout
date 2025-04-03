@@ -231,7 +231,13 @@ export const PaymentForm = () => {
           </svg>
           <span className="text-sm font-normal">Secure and encrypted</span>
         </div>
-        <div className="text-[#8A898C] text-right text-sm font-medium">shop</div>
+        <div className="text-[#8A898C] text-right">
+          <img 
+            src="/lovable-uploads/6e2e9145-7db3-43b1-a007-ac5257a7bba6.png" 
+            alt="Shop logo" 
+            className="h-4 object-contain" 
+          />
+        </div>
       </div>
 
       <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[5px] py-4">
