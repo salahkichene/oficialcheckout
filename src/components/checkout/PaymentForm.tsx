@@ -240,7 +240,7 @@ export const PaymentForm = () => {
         </div>
       </div>
 
-      <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[20px] py-4">
+      <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[5px] py-4">
         Pay now
       </button>
 
