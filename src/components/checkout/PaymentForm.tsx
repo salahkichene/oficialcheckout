@@ -222,9 +222,26 @@ export const PaymentForm = () => {
         </div>
       </div>
 
-      <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[5px] py-4 mt-6">
+      {/* Secure checkout message */}
+      <div className="flex justify-between items-center mt-6 mb-3 text-[#8A898C]">
+        <div className="flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-lock">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span className="text-sm font-normal">Secure and encrypted</span>
+        </div>
+        <div className="text-[#8A898C] text-right text-sm font-medium">shop</div>
+      </div>
+
+      <button className="w-full bg-[rgba(23,115,176,1)] text-white font-semibold text-[19px] rounded-[5px] py-4">
         Pay now
       </button>
+
+      {/* Terms of service text */}
+      <div className="text-sm text-[#505050] mt-3">
+        Your info will be saved to a Shop account. By continuing, you agree to Shop's <a href="#" className="text-[#1773b0] hover:underline">Terms of Service</a> and acknowledge the <a href="#" className="text-[#1773b0] hover:underline">Privacy Policy</a>.
+      </div>
     </section>
   );
 };
